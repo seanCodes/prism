@@ -96,6 +96,10 @@ var components = {
 		'groovy': {
 			title: 'Groovy',
 			require: 'clike'
+		},
+		'less': {
+			title: 'LESS',
+			require: 'less'
 		}
 	}
 };
