@@ -1,3 +1,19 @@
+Prism.languages.less = {
+/*
+	'comment': /\/\*[\w\W]*?\*\//g,
+	'atrule': /@[\w-]+?(\s+[^;{]+)?(?=\s*{|\s*;)/gi,
+	'url': /url\((["']?).*?\1\)/gi,
+	'property': /(\b|\B)[a-z-]+(?=\s*:)/ig,
+	'string': /("|')(\\?.)*?\1/g,
+	'important': /\B!important\b/gi,
+	'ignore': /&(lt|gt|amp);/gi,
+*/
+	//'selector': /[^\{\}\s][^\{\}]*(?=\s*\{)/g
+	'selector': /(\.|#)[\w-]+([\s>]*[\.#][\w-]+)*(?=\s*\(?[\w\s@,-]*\)?;)/g
+	//'punctuation': /[\{\}\(\);:,.]/g
+};
+
+/*
 Prism.languages.less = Prism.languages.extend('css', {
 	'comment': {
 		pattern: /(^|[^\\])(\/\*[\w\W]*?\*\/|\/\/.*?(\r?\n|$))/g,
@@ -18,11 +34,9 @@ Prism.languages.less = Prism.languages.extend('css', {
 	'selector': /([^@;\{\}\(\)]?([^@;\{\}\(\)]|&amp;|\#\{\$[-_\w]+\})+)(?=\s*\{(\}|\s|[^\}]+(:|\{)[^\}]+))/gm
 });
 
-/*
-Prism.languages.insertBefore('less', 'atrule', {
-	'keyword': /@(if|else if|else|for|each|while|import|extend|debug|warn|mixin|include|function|return)|(?=@for\s+\$[-_\w]+\s)+from/i
-});
-*/
+//Prism.languages.insertBefore('less', 'atrule', {
+//	'keyword': /@(if|else if|else|for|each|while|import|extend|debug|warn|mixin|include|function|return)|(?=@for\s+\$[-_\w]+\s)+from/i
+//});
 
 Prism.languages.insertBefore('less', 'property', {
 	// var and interpolated vars
@@ -40,5 +54,6 @@ Prism.languages.insertBefore('less', 'ignore', {
 Prism.languages.insertBefore('less', 'atrule', {
 	'keyword': /(\.|#)[\w-]+([\s\.>]*[\w-])*\s*(?=\()/g,
 });
+*/
 
 
