@@ -44,6 +44,7 @@ textarea {
 		display: block;
 		column-span: all;
 	}
+/*
 .token.variable { color: #8d4ba9; }
 .token.mixin { color: #a84a89; }
 .token.atrule { color: #d7b015; }
@@ -56,6 +57,7 @@ textarea {
 .token.color { color: #4144da; }
 .token.function { color: #bd371b; }
 .token.function { color: #ce2754; }
+*/
 /* .token.attribute { color: #4ea69a; } */
 /* .token.mixin { color: #a84a7f; } */
 </style>
@@ -148,6 +150,531 @@ textarea {
 	</form>
 </section>
 <section>
+	<h2>From lesscss.org</h2>
+	<pre class="lang-less"><code>
+@nice-blue: #5B83AD;
+@light-blue: (@nice-blue + #111);
+
+#header { color: @light-blue; }
+	</code></pre>
+	<pre class="lang-less"><code>
+#header { color: #6c94be}
+	</code></pre>
+	<pre class="lang-less"><code>
+@fnord: "I am fnord.";
+@var: 'fnord';
+content: @@var;
+	</code></pre>
+	<pre class="lang-less"><code>
+content: "I am fnord.";
+	</code></pre>
+	<pre class="lang-less"><code>
+@var: 0;
+.class1 {
+	@var: 1;
+	.class {
+		@var: 2;
+		three: @var;
+		@var: 3;
+	}
+	one: @var;
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+.class1 .class {
+	three: 3;
+}
+.class {
+	one: 1;
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+.lazy-eval {
+	width: @var;
+}
+
+@var: @a;
+@a: 9%;
+	</code></pre>
+	<pre class="lang-less"><code>
+.lazy-eval-scope {
+	width: @var;
+	@a: 9%;
+}
+
+@var: @a;
+@a: 100%;
+	</code></pre>
+	<pre class="lang-less"><code>
+.lazy-eval-scope {
+	width: 9%;
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+.bordered {
+	border-top: dotted 1px black;
+	border-bottom: solid 2px black;
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+#menu a {
+	color: #111;
+	.bordered;
+}
+.post a {
+	color: red;
+	.bordered;
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+#menu a {
+	color: #111;
+	border-top: dotted 1px black;
+	border-bottom: solid 2px black;
+}
+.post a {
+	color: red;
+	border-top: dotted 1px black;
+	border-bottom: solid 2px black;
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+.bordered-radius (@radius) {
+	border-radius: @radius;
+	-moz-border-radius: @radius;
+	-webkit-border-radius: @radius;
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+#header {
+	.border-radius(4px);
+}
+.button {
+	.border-radius(6px);
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+.bordered-radius (@radius: 5px) {
+	border-radius: @radius;
+	-moz-border-radius: @radius;
+	-webkit-border-radius: @radius;
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+#header {
+	.border-radius;
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+.wrap () {
+	text-wrap: wrap;
+	white-space: pre-wrap;
+	white-space: -moz-pre-wrap;
+	word-wrap: break-word;
+}
+
+pre { .wrap }
+	</code></pre>
+	<pre class="lang-less"><code>
+.mixin(@color) {
+	color-1: @color;
+}
+.mixin(@color; @padding:2) {
+	color-2: @color;
+	padding-2: @padding;
+}
+.mixin(@color; @padding; @margin: 2) {
+	color-3: @color;
+	padding-3: @padding;
+	margin: @margin @margin @margin @margin;
+}
+.some .selector div {
+	.mixin(#008000);
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+.some .selector div {
+	color-1: #008000;
+	color-2: #008000;
+	padding-2: 2;
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+.box-shadow (@x: 0; @y: 0; @blur: 1px; @color: #000) {
+	box-shadow: @arguments;
+	-moz-box-shadow: @arguments;
+	-webkit-box-shadow: @arguments;
+}
+.box-shadow(2px; 5px);
+	</code></pre>
+	<pre class="lang-less"><code>
+box-shadow: 2px 5px 1px #000;
+-moz-box-shadow: 2px 5px 1px #000;
+-webkit-box-shadow: 2px 5px 1px #000;
+	</code></pre>
+	<pre class="lang-less"><code>
+.mixin (...) {        // matches 0-N arguments
+.mixin () {           // matches exactly 0 arguments
+.mixin (@a: 1) {      // matches 0-1 arguments
+.mixin (@a: 1; ...) { // matches 0-N arguments
+.mixin (@a; ...) {    // matches 1-N arguments
+	</code></pre>
+	<pre class="lang-less"><code>
+.mixin (@a; @rest...) {
+	// @rest is bound to arguments after @a
+	// @arguments is bound to all arguments
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+.mixin (@a: 0) {
+	border: @a;
+	boxer: @a;
+}
+.unimportant {
+	.mixin(1); 
+}
+.important {
+	.mixin(2) !important; 
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+.unimportant {
+	border: 1;
+	boxer: 1;
+}
+.important {
+	border: 2 !important;
+	boxer: 2 !important;
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+.mixin (@s; @color) { ... }
+
+.class {
+	.mixin(@switch; #888);
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+.mixin (dark; @color) {
+	color: darken(@color, 10%);
+}
+.mixin (light; @color) {
+	color: lighten(@color, 10%);
+}
+.mixin (@_; @color) {
+	display: block;
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+@switch: light;
+
+.class {
+	.mixin(@switch; #888);
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+.class {
+	color: #a2a2a2;
+	display: block;
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+.mixin (@a) {
+	color: @a;
+}
+.mixin (@a; @b) {
+	color: fade(@a; @b);
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+.mixin (@a) when (lightness(@a) &gt;= 50%) {
+	background-color: black;
+}
+.mixin (@a) when (lightness(@a) &lt; 50%) {
+	background-color: white;
+}
+.mixin (@a) {
+	color: @a;
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+.class1 { .mixin(#ddd) }
+.class2 { .mixin(#555) }
+	</code></pre>
+	<pre class="lang-less"><code>
+.class1 {
+	background-color: black;
+	color: #ddd;
+}
+.class2 {
+	background-color: white;
+	color: #555;
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+.truth (@a) when (@a) { ... }
+.truth (@a) when (@a = true) { ... }
+	</code></pre>
+	<pre class="lang-less"><code>
+.class {
+	.truth(40); // Will not match any of the above definitions.
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+.mixin (@a) when (@a > 10), (@a &lt; -10) { ... }
+	</code></pre>
+	<pre class="lang-less"><code>
+@media: mobile;
+
+.mixin (@a) when (@media = mobile) { ... }
+.mixin (@a) when (@media = desktop) { ... }
+
+.max (@a; @b) when (@a > @b) { width: @a }
+.max (@a; @b) when (@a < @b) { width: @b }
+	</code></pre>
+	<pre class="lang-less"><code>
+.mixin (@a; @b: 0) when (isnumber(@b)) { ... }
+.mixin (@a; @b: black) when (iscolor(@b)) { ... }
+	</code></pre>
+	<pre class="lang-less"><code>
+.mixin (@a) when (isnumber(@a)) and (@a > 0) { ... }
+	</code></pre>
+	<pre class="lang-less"><code>
+#header { color: black; }
+#header .navigation {
+	font-size: 12px;
+}
+#header .logo {
+	width: 300px;
+}
+#header .logo:hover {
+	text-decoration: none;
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+#header {
+	color: black;
+	
+	.navigation {
+		font-size: 12px;
+	}
+	.logo {
+		width: 300px;
+		&:hover { text-decoration: none }
+	}
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+#header         { color: black;
+	.navigation  { font-size: 12px }
+	.logo        { width: 300px;
+		&:hover   { text-decoration: none }
+	}
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+.bordered {
+	&.float {
+		float: left;
+	}
+	.top {
+		margin: 5px;
+	}
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+.bordered.float {
+	float: left;
+}
+.bordered .top {
+	margin: 5px;
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+.one {
+	@media (width: 400px) {
+		font-size: 1.2em;
+		@media print and color {
+			color: blue;
+		}
+	}
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+@media (width: 400px) {
+	.one {
+		font-size: 1.2em;
+	}
+}
+@media (width: 400px) and print and color {
+	.one {
+		color: blue;
+	}
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+.child, .sibling {
+	.parent & {
+		color: black;
+	}
+	& + & {
+		color: red;
+	}
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+.parent .child,
+.parent .sibling {
+	color: black;
+}
+.child + .child,
+.child + .sibling,
+.sibling + .child,
+.sibling + .sibling {
+	color: red;
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+@base: 5%;
+@filler: (@base * 2);
+@other: (@base + @filler);
+
+color: (#888 / 4);
+background-color: (@base-color + #111);
+height: (100% / 2 + @filler);
+	</code></pre>
+	<pre class="lang-less"><code>
+@var: (1px + 5);
+	</code></pre>
+	<pre class="lang-less"><code>
+width: ((@var + 5) * 2);
+	</code></pre>
+	<pre class="lang-less"><code>
+@base: #f04615;
+@width: 0.5;
+
+.class {
+	width: percentage(0.5); // returns `50%`
+	color: saturate(@base, 5%);
+	background-color: spin(lighten(@base, 25%), 8);
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+#bundle {
+	.button () {
+		display: block;
+		border: 1px solid black;
+		background-color: grey;
+		&:hover { background-color: white }
+	}
+	.tab { ... }
+	.citation { ... }
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+#header a {
+	color: orange;
+	#bundle > .button;
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+@var: red;
+
+#page {
+	@var: white;
+	#header {
+		color: @var; // white
+	}
+}
+
+#footer {
+	color: @var; // red
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+@var: red;
+
+#page {
+	@var: white;
+	#header {
+		color: @var; // white
+	}
+}
+
+#footer {
+	color: @var; // red
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+/* Hello, I'm a CSS-style comment */
+.class { color: black }
+	</code></pre>
+	<pre class="lang-less"><code>
+// Hi, I'm a silent comment, I won't show up in your CSS
+.class { color: white }
+	</code></pre>
+	<pre class="lang-less"><code>
+@import "lib.css";
+	</code></pre>
+	<pre class="lang-less"><code>
+h1 { color: green; }
+@import "import/official-branding.css?urlParameter=23";
+	</code></pre>
+	<pre class="lang-less"><code>
+@import "import/official-branding.css?urlParameter=23";
+h1 { color: green; }
+	</code></pre>
+	<pre class="lang-less"><code>
+@imported-color: red;
+h1 { color: green; }
+	</code></pre>
+	<pre class="lang-less"><code>
+@import "library.less" screen and (max-width: 400px); // import with media queries
+@import "library.less"; // import without media queries
+
+.class {
+	color: @importedColor; // use imported variable
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+// Corresponds to import with media queries
+@media screen and (max-width: 400px) {
+	h1 { color: green; }
+}
+
+// Corresponds to import without media queries
+h1 { color: green; }
+.class {
+	// Use imported variable
+	color: #ff0000;
+}
+	</code></pre>
+	<p>. . .</p>
+	<pre class="lang-less"><code>
+@base-url: "http://assets.fnord.com";
+background-image: url("@{base-url}/images/bg.png");
+	</code></pre>
+	<pre class="lang-less"><code>
+.class {
+	filter: ~"ms:alwaysHasItsOwnSyntax.For.Stuff()";
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+.class {
+	filter: ms:alwaysHasItsOwnSyntax.For.Stuff();
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+.class {
+	@what: "Stuff";
+	filter: ~"ms:alwaysHasItsOwnSyntax.For.@{what}()";
+}
+	</code></pre>
+	<pre class="lang-less"><code>
+.mixin (@b) when not (@b > 0) { ... }
+	</code></pre>
+</section>
+<section>
 	<h2>Numbers</h2>
 	<pre class="lang-less"><code>
 // Valid
@@ -182,6 +709,9 @@ word-1 word-1
 	width: 10mm;
 	width: 10vw;
 	width: 10vh;
+	transition: all 2s ease-out;
+	transition: height 200ms ease-in-out;
+	transform: rotate(7.5deg);
 }
 	</code></pre>
 </section>
