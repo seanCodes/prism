@@ -48,6 +48,7 @@ Prism.languages.less = {
 	'string': /("(?:(?!")[^\\]|\\.)*"|'(?:(?!')[^\\]|\\.)*')/g,
 	'keyword': /\b(when)\b/g,
 	'atrule': /@(charset|font-face|import|keyframes|media|page)[\w\s]*(?=\(|\{)/gi,
+	'variable': /@@?[\w-_]+/g,
 	'function': /\b(escape|e|%|unit|color|data-uri|ceil|floor|percentage|round|sqrt|abs|sin|asin|cos|acos|tan|atan|pi|pow|mod|convert|rgb|rgba|argb|hsl|hsla|hsv|hsva|hue|saturation|lightness|hsvhue|hsvsaturation|hsvvalue|red|green|blue|alpha|luma|saturate|desaturate|lighten|darken|fadein|fadeout|fade|spin|mix|greyscale|contrast|multiply|screen|overlay|softlight|hardlight|difference|exclusion|average|negation|iscolor|isnumber|isstring|iskeyword|isurl|ispixel|ispercentage|isem|isunit)(?=\s*\()/g,
 	'color': /(#[a-fA-F0-9]{8}|#[a-fA-F0-9]{6}|#[a-fA-F0-9]{3})/g, //|[hr][bglsv]{2}a?
 	'number': {
@@ -55,7 +56,6 @@ Prism.languages.less = {
 		lookbehind: true
 	},
 	'class': /([\.:]([\w-]+|@\{[\w-]+\}))(?=[^\{\};]*\{)/mg,
-	'variable': /(@@?-?[-a-z_0-9]+\s*)/g,
 	'attribute': /(\*?-?[-a-z_0-9]+\s*)(?=:[^\{\};]*[\};])/mg,
 	'selector': /(\[[a-z]+)/g,
 	'id': /(#[\w-]+)(?=[^\{\}]*\{)/mg,
