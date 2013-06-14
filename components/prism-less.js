@@ -9,8 +9,57 @@ Prism.languages.less = {
 	'ignore': /&(lt|gt|amp);/gi,
 */
 	//'selector': /[^\{\}\s][^\{\}]*(?=\s*\{)/g
-	'selector': /(\.|#)[\w-]+([\s>]*[\.#][\w-]+)*(?=\s*\(?[\w\s@,-]*\)?;)/g
-	//'punctuation': /[\{\}\(\);:,.]/g
+	
+	// Comments have first priority
+/*
+	'comment': {
+		pattern: /(^|[^\\])(\/\*[\w\W]*?\*\/|(^|[^:])\/\/.*?(\r?\n|$))/g,
+		lookbehind: true
+	},
+	
+	// Strings are second
+	'string': /("|')(\\?.)*?\1/g,
+	
+	// Then at-rules which are easy to identify
+	'atrule': /@(charset|font-face|import|keyframes|media|page)[\w\s]*(?=\(|\{)/gi,
+	
+	// Everything that's not an at-rule is a variable
+	'variable': /@[\w-]+/g,
+	
+	// Then grab numbers
+	'number': {
+		pattern: /(^|[^\w-])-?\d*\.?\d+(px|%|em|rem|pc|pt|ex|in|cm|mm|vw|vh|deg|s|ms)?(?=[^\w-])/g,
+		lookbehind: true
+	},
+	
+	'property': /[\w-]+\s*(?=[:])/g,
+	
+	'selector': /[:\.#]*[\w-]+(?=\s*[,\{])/g,
+*/
+	
+	//'mixin': /(\.|#)[\w-]+([\s>]*[\.#][\w-]+)*(?=\s*\(?[\w\s@,-]*\)?;)/g,
+	
+	// Finally pull out any operators
+	//'operator': /[-+]{1,2}|!|=?&lt;|=?&gt;|={1,2}|(&amp;){1,2}|\|?\||\?|\*|\/|\~|\^|\%/g,
+	//'ignore': /(&gt;|&lt;)/g,
+	//'punctuation': /[{}[\]()\.,:;]/g
+	
+	'comment': /(\/\*(?:[^*]|\*+[^\/*])*\*+\/|\/\/[^\n]*)/mg,
+	'string': /("(?:(?!")[^\\]|\\.)*"|'(?:(?!')[^\\]|\\.)*')/g,
+	'keyword': /\b(when)\b/g,
+	'color': /(#[a-fA-F0-9]{8}|#[a-fA-F0-9]{6}|#[a-fA-F0-9]{3})(\b|$)/mg,
+	'number': {
+		pattern: /(^|[^\w-])-?\d*\.?\d+(px|%|em|rem|pc|pt|ex|in|cm|mm|vw|vh|deg|s|ms)?(?=[^\w-])/g,
+		lookbehind: true
+	},
+	'class': /([\.:]([\w-]+|@\{[\w-]+\}))(?=[^\{\};]*\{)/mg,
+	'variable': /(@@?-?[-a-z_0-9]+\s*)/g,
+	'attribute': /(\*?-?[-a-z_0-9]+\s*)(?=:[^\{\};]*[\};])/mg,
+	'selector': /(\[[a-z]+)/g,
+	'id': /(#[\w-]+)(?=[^\{\}]*\{)/mg,
+	'mixin': /([#\.][\w-]+)(?=[^;\{\}]*[;\}])/g,
+	'element': /\b([a-z]+[0-9]?)\b(?=[^\{\}\);]*\{)/mg,
+	'important': /(! *important)\b/g
 };
 
 /*
