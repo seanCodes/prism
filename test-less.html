@@ -6,7 +6,7 @@
 <link rel="shortcut icon" href="favicon.png" />
 <title>LESS Test</title>
 <link rel="stylesheet" href="style.css" />
-<link rel="stylesheet" href="prism.css" data-noprefix />
+<link rel="stylesheet" href="prism-dark.css" data-noprefix />
 <style>
 #theme {
 	margin-right: -9em;
@@ -44,7 +44,18 @@ textarea {
 		display: block;
 		column-span: all;
 	}
-
+.token.variable { color: #8d4ba9; }
+.token.mixin { color: #a84a89; }
+.token.atrule { color: #d7b015; }
+.token.selector { color: #07a; }
+.token.element { color: #07a; }
+.token.class { color: #07a; }
+.token.id { color: #07a; }
+.token.property { color: #cb8337; }
+.token.attribute { color: #cb8337; }
+.token.color { color: #4144da; }
+/* .token.attribute { color: #4ea69a; } */
+/* .token.mixin { color: #a84a7f; } */
 </style>
 <script src="prefixfree.min.js"></script>
 </head>
@@ -68,6 +79,10 @@ textarea {
 		.clearfix();
 		.clearfix ();
 		margin-bottom: 0.5em;
+		#gradient > .vertical(@navbarBackgroundHighlight, @navbarBackground);
+		&:before {
+			content: "OH HAI";
+		}
 	}
 	.muted {
 		color: darken(#fff, 35%);
@@ -130,6 +145,44 @@ textarea {
 		</p>
 	</form>
 </section>
+<section>
+	<h2>Numbers</h2>
+	<pre class="lang-less"><code>
+// Valid
+00000 - 0000
+000.0 - 00.0
+0.000 - 0.00
+.0 - .0
+-0 - -0
+-00.0 - -00.0
+-0.00 - -0.00
+
+// Part-Valid
+0.
+
+// Invalid
+word0word word0word
+word-1 word-1
+1-word 1-word
+--0
+
+// Units
+.test {
+	width: 10px;
+	width: 10%;
+	width: 10em;
+	width: 10rem;
+	width: 10pt;
+	width: 10pc;
+	width: 10ex;
+	width: 10in;
+	width: 10cm;
+	width: 10mm;
+	width: 10vw;
+	width: 10vh;
+}
+	</code></pre>
+</section>
 
 <footer data-src="templates/footer.html" data-type="text/html"></footer>
 
@@ -182,11 +235,12 @@ radios[0].onclick();
 
 var textarea = $('textarea', form);
 
+code.className = 'language-less';
+console.log(Prism.languages.less);
+
 (textarea.oninput = function() {
 	code.textContent = this.value || '';
-	code.className = 'language-less';
 	Prism.highlightElement(code);
-	console.log(Prism.languages.less);
 }).call(textarea);
 
 })();
