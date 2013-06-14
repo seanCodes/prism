@@ -59,8 +59,31 @@ Prism.languages.less = {
 	'id': /(#[\w-]+)(?=[^\{\}]*\{)/mg,
 	'mixin': /([#\.][\w-]+)(?=[^;\{\}]*[;\}])/g,
 	'element': /\b([a-z]+[0-9]?)\b(?=[^\{\}\);]*\{)/mg,
-	'important': /(! *important)\b/g
+	'important': /(! *important)\b/g,
+	'operator': /[-+]{1,2}|!|=?&lt;|=?&gt;|={1,2}|(&amp;){1,2}|\|?\||\?|\*|\/|\~|\^|\%/g,
+	'punctuation': /[{}[\]()\.,:;]/g
 };
+
+
+
+
+/*
+	//'selector': /[^\{\}\s][^\{\}]*(?=\s*\{)/g
+	//'selector': /(\.|#)[\w-]+([\s>]*[\.#][\w-]+)*(?=\s*\(?[\w\s@,-]*\)?;)/g
+	'comment': {
+		pattern: /(^|[^\\])(\/\*[\w\W]*?\*\/|(^|[^:])\/\/.*?(\r?\n|$))/g,
+		lookbehind: true
+	},
+	'atrule': /@(charset|font-face|import|keyframes|media|page)[\d\w\s]*(?=\(|\{})?/gi,
+	'number': {
+		pattern: /([^\w])\d?\.?\d+(px|em|%)?/g,
+		lookbehind: true
+	},
+	'punctuation': /[\{\}\(\);:,.]/g
+*/
+
+
+
 
 /*
 Prism.languages.less = Prism.languages.extend('css', {
