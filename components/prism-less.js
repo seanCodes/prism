@@ -49,6 +49,21 @@ Prism.languages.less = {
 		pattern: /(^|[^\\])(\/\*[\w\W]*?\*\/|(^|[^:])\/\/.*?(\r?\n|$))/g,
 		lookbehind: true
 	},
+	// "query" is everything that comes after `@media` or `@import`.
+	// Comes before string token since, in the case of `@import`, it can have a string within it.
+	// Prevents LESS keywords within media queries from being highlighted and highlights media types.
+	'query': {
+		pattern: /((^|[\t ]*)@(import|media)\s+).*?(?={|;)/ig,
+		lookbehind: true,
+		inside: {
+			'string': /("|')(\\?.)*?\1/g,
+			'number': /(^|[^\w-])-?\d*\.?\d+(px|%|em|rem|pc|pt|ex|in|cm|mm|vw|vh|dpi|dpcm)?(?=[^\w-]|$)/g, // note that `deg`, `s` and `ms` are replaced with `dpi` and `dpcm`
+			'variable': /@@?[\w-_]+/g,
+			'ignore': /\b(not|only|and|resolution)\s+/gi,
+			'property': /[\w-]+/g,
+			'punctuation': /[()\.,:<>]|&gt;|&lt;/g,
+		}
+	},
 	'variable': /@@?[\w-_]+/g,
 	'keyword': {
 		pattern: /([^\w-])\b(when|not|and)\b(?![\w-])/g,
