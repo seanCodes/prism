@@ -43,7 +43,6 @@ Prism.languages.less = {
 	//'operator': /[-+]{1,2}|!|=?&lt;|=?&gt;|={1,2}|(&amp;){1,2}|\|?\||\?|\*|\/|\~|\^|\%/g,
 	//'ignore': /(&gt;|&lt;)/g,
 	//'punctuation': /[{}[\]()\.,:;]/g
-	'atrule': /@(charset|font-face|import|keyframes|media|page)[\w\s]*(?=\(|\{)/gi,
 	'comment': {
 		pattern: /(^|[^\\])(\/\*[\w\W]*?\*\/|(^|[^:])\/\/.*?(\r?\n|$))/g,
 		lookbehind: true
@@ -64,6 +63,10 @@ Prism.languages.less = {
 		}
 	},
 	'string': /("|')(\\?.)*?\1/g,
+	'atrule': {
+		pattern: /(^|[\t ]*)@(charset|font-face|import|keyframes|media|page)\s+/ig,
+		lookbehind: true,
+	},
 	'variable': /@@?[\w-_]+/g,
 	'keyword': {
 		pattern: /([^\w-])\b(when|not|and)\b(?![\w-])/g,
