@@ -51,7 +51,7 @@ Prism.languages.less = {
 	// Comes before string token since, in the case of `@import`, it can have a string within it.
 	// Prevents LESS keywords within media queries from being highlighted and highlights media types.
 	'query': {
-		pattern: /((^|[\t ]*)@(import|media)\s+).*?(?={|;)/ig,
+		pattern: /(^[\t ]*@(import|media)\s+).*?(?={|;)/gim,
 		lookbehind: true,
 		inside: {
 			'string': /("|')(\\?.)*?\1/g,
@@ -64,7 +64,7 @@ Prism.languages.less = {
 	},
 	'string': /("|')(\\?.)*?\1/g,
 	'atrule': {
-		pattern: /(^|[\t ]*)@(charset|font-face|import|keyframes|media|page)\s+/ig,
+		pattern: /(^[\t ]*)@(charset|font-face|import|keyframes|media|page)\s+/gim,
 		lookbehind: true,
 	},
 	'variable': /@@?[\w-_]+/g,
